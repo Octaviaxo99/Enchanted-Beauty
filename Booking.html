@@ -1,0 +1,106 @@
+﻿<!-- Confirmation Box Section -->
+<section id="confirmation" style="display: none;">
+    <h2>Confirmation</h2>
+    <p id="selectedDate"></p>
+    <p id="selectedTime"></p>
+    <p id="selectedService"></p>
+</section>
+
+
+<script>
+    function showConfirmation() {
+        var confirmation = document.getElementById('confirmation');
+        var selectedDate = document.getElementById('selectedDate');
+        var selectedTime = document.getElementById('selectedTime');
+        var selectedService = document.getElementById('selectedService');
+        
+        // Update selected date, time, and service
+        selectedDate.textContent = "Selected date: " + document.getElementById('date').value;
+        selectedTime.textContent = "Selected time: " + document.querySelector('.selectedTime').textContent;
+        selectedService.textContent = "Selected service: " + document.getElementById('service').value;
+        
+        // Show confirmation box
+        confirmation.style.display = 'block';
+    }
+
+
+    function selectDate(date) {
+        // Update hidden input field with selected date
+        document.getElementById('date').value = date;
+    }
+
+
+    function selectTime(time) {
+        // Update selected time
+        var timeSlots = document.querySelectorAll('.timeSlot');
+        for (var i = 0; i < timeSlots.length; i++) {
+            timeSlots[i].classList.remove('selectedTime');
+        }
+        var selectedTimeSlot = document.querySelector('.timeSlot[data-time="' + time + '"]');
+        selectedTimeSlot.classList.add('selectedTime');
+    }
+
+
+    function selectService(service) {
+        // Update hidden input field with selected service
+        document.getElementById('service').value = service;
+    }
+</script>
+
+
+ <section id="booking">
+            <h2>Book An Appointment</h2>
+            <button onclick="toggleCalendar()">Book Now</button>
+            <button onclick="toggleTimeSlots()">Time</button>
+            <div id="calendar" aria-hidden="true">
+                <p>Select a date:</p>
+                <!-- Basic calendar -->
+                <input type="date" onchange="selectDate(this.value)">
+            </div>
+            <div id="timeSlots" aria-hidden="true">
+                <p>Select a time:</p>
+                <!-- Time slots -->
+                <ul>
+                    <li class="timeSlot" onclick="selectTime('9:00 AM')">9:00 AM</li>
+                    <li class="timeSlot" onclick="selectTime('9:30 AM')">9:30 AM</li>
+                    <li class="timeSlot" onclick="selectTime('10:00 AM')">10:00 AM</li>
+                    <li class="timeSlot" onclick="selectTime('10:30 AM')">10:30 AM</li>
+                    <li class="timeSlot" onclick="selectTime('11:00 AM')">11:00 AM</li>
+                    <li class="timeSlot" onclick="selectTime('11:30 AM')">11:30 AM</li>
+                    <li class="timeSlot" onclick="selectTime('12:00 PM')">12:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('12:30 PM')">12:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('1:00 PM')">1:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('1:30 PM')">1:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('2:00 PM')">2:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('2:30 PM')">2:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('3:00 PM')">3:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('3:30 PM')">3:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('4:00 PM')">4:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('4:30 PM')">4:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('5:00 PM')">5:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('5:30 PM')">5:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('6:00 PM')">6:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('6:30 PM')">6:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('7:00 PM')">7:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('7:30 PM')">7:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('8:00 PM')">8:00 PM</li>
+                    <li class="timeSlot" onclick="selectTime('8:30 PM')">8:30 PM</li>
+                    <li class="timeSlot" onclick="selectTime('9:00 PM')">9:00 PM</li>
+                </ul>
+            </div>
+           
+    <!-- Services Selection -->
+    <div id="services" aria-hidden="true">
+        <p>Select A Service:</p>
+        <!-- List of services -->
+        <select onchange="selectService(this.value)">
+            <option value="Bridal Makeup">Bridal Makeup</option>
+            <option value="Evening Glam">Evening Glam</option>
+            <option value="Photoshoot Makeup">Photoshoot Makeup</option>
+            <option value="Natural Look">Natural Look</option>
+            <option value="Makeup Lesson">Makeup Lesson</option>
+        </select>
+    <button onclick="showConfirmation()">Confirm Appointment</button>
+</section>
+         <img src="https://cdn-s.acuityscheduling.com/upload-f22229fe66d22b984c5772712ba702af.jpg" alt="Booking Policies">
+    </section>
